@@ -8,4 +8,5 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 // Routes - Users 
-$routes->get('users','Users::list');
+$routes->get('users', 'Users::list');
+$routes->post('users', 'Users::create');
