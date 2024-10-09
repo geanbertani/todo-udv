@@ -1,0 +1,34 @@
+services:
+  mysql_5:
+    platform: linux/x86_64
+    container_name: mysql_5
+    image: mysql:5.7
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - cwdigital_net  
+    ports:
+      - 3306:3306  
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+
+  php_8:
+    container_name: php_8
+    build:
+      context: ./server/
+      dockerfile: Dockerfile
+    image: php:8.2
+    volumes:
+      - ./server/src/:/var/www/html
+    networks:
+      - cwdigital_net
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - mysql_5
+    tty: true  
+
+networks:
+  cwdigital_net:
+    driver: bridge
