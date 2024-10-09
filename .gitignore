@@ -14,4 +14,4 @@
 .vscode/
 
 #Database
-mysql/
+mysql/data/
